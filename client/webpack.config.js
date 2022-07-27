@@ -15,7 +15,7 @@ module.exports = () => {
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
-      /* JBS Without publicPath the HTML looks for the manifest in dist/auto/. */
+      /* Without publicPath the HTML looks for the manifest in dist/auto/. */
       publicPath: "", 
     },
     plugins: [
@@ -33,7 +33,7 @@ module.exports = () => {
         crossorigin: "use-credentials", //can be null, use-credentials or anonymous
         icons: [
           {
-            src: path.resolve("assets/images/logo.png"),
+            src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
           },
         ],
