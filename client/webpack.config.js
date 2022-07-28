@@ -32,8 +32,9 @@ module.exports = () => {
       new WebpackPwaManifest({
         name: "iContact",
         short_name: "iContact",
-        description: "My awesome Progressive Web App!",
+        description: "record contact information",
         background_color: "#ffffff",
+        fingerprints: false,
         crossorigin: "use-credentials", //can be null, use-credentials or anonymous
         icons: [
           {
