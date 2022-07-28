@@ -1,22 +1,22 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
-const { GenerateSW } = require("workbox-webpack-plugin");
+const { InjectManifest } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
     devtool: "source-map",
     mode: "development",
     entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js',
-      cards: './src/js/cards.js'
+      main: "./src/js/index.js",
+      install: "./src/js/install.js",
+      cards: "./src/js/cards.js",
     },
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
       /* Without publicPath the HTML looks for the manifest in dist/auto/. */
-      publicPath: "", 
+      publicPath: "",
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -24,7 +24,11 @@ module.exports = () => {
         title: "iContacts",
       }),
 
-      new GenerateSW(),
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "./sw.js",
+      }),
+
       new WebpackPwaManifest({
         name: "iContact",
         short_name: "iContact",
@@ -64,6 +68,3 @@ module.exports = () => {
     },
   };
 };
-
-
-
